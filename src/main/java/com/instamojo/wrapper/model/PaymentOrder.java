@@ -2,6 +2,7 @@ package com.instamojo.wrapper.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 public class PaymentOrder {
@@ -80,6 +81,18 @@ public class PaymentOrder {
      * The payments.
      */
     private List<Payment> payments;
+
+     /**
+     * The expires at.
+     */
+    @SerializedName("expires_at")
+    private Date expiresAt;
+
+     /**
+     * The allow repeated payments.
+     */
+    @SerializedName("allow_repeated_payments")
+    private Boolean allowRepeatedPayments;
 
     /**
      * Gets the id.
@@ -337,6 +350,42 @@ public class PaymentOrder {
         this.payments = payments;
     }
 
+    /**
+     * Gets the expires at.
+     *
+     * @return the expires at
+     */
+    public Date getExpiresAt() {
+        return expiresAt;
+    }
+
+    /**
+     * Sets the expires at date.
+     *
+     * @param expiresAt the new expires at
+     */
+    public void setExpiresAt(Date expiresAt) {
+        this.expiresAt = expiresAt;
+    }
+
+    /**
+     * Gets the allow repeated payments.
+     *
+     * @return the allow repeated payments
+     */
+    public Boolean getAllowRepeatedPayments() {
+        return allowRepeatedPayments;
+    }
+
+    /**
+     * Sets the expires at date.
+     *
+     * @param allowRepeatedPayments the new allow repeated payments
+     */
+    public void setAllowRepeatedPayments(Boolean allowRepeatedPayments) {
+        this.allowRepeatedPayments = allowRepeatedPayments;
+    }
+
     @Override
     public String toString() {
         return "PaymentOrder{" +
@@ -353,7 +402,9 @@ public class PaymentOrder {
                 ", redirectUrl='" + redirectUrl + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", resourceUri='" + resourceUri + '\'' +
-                ", payments=" + payments +
+                ", payments=" + payments + '\'' +
+                ", expiresAt=" + expiresAt + '\'' +
+                ", allowRepeatedPayments=" + allowRepeatedPayments +
                 '}';
     }
 }

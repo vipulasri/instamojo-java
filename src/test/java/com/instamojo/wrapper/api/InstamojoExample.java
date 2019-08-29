@@ -7,6 +7,7 @@ import com.instamojo.wrapper.model.PaymentOrderResponse;
 import com.instamojo.wrapper.model.Refund;
 import com.instamojo.wrapper.response.ApiListResponse;
 
+import java.util.Date;
 
 
 public class InstamojoExample {
@@ -16,7 +17,9 @@ public class InstamojoExample {
         /*
          * Get a reference to the instamojo api
          */
-        ApiContext context = ApiContext.create("[PARAM_CLIENT_ID]", "[PARAM_CLIENT_SECRET]", ApiContext.Mode.TEST);
+        ApiContext context = ApiContext.create("test_HFPivnZqm3zYzjdrmrq5L1MXrb45Gk6IK47",
+                "test_yXfTNXFXXZn385MbA9ajwX2Ji02ipvNpVwognz2ogTdVLoVdx5B6Kkc00pGwB67cUlzMw0kft82ZHDI5S3WoTMNv1PV4fIV924yyKmOKluQzrlixfulpDv2PTBH",
+                ApiContext.Mode.TEST);
         Instamojo api = new InstamojoImpl(context);
 
         /*
@@ -25,17 +28,21 @@ public class InstamojoExample {
         PaymentOrder order = new PaymentOrder();
         order.setName("John Smith");
         order.setEmail("john.smith@gmail.com");
-        order.setPhone("12345678790");
+        order.setPhone("1234567890");
         order.setCurrency("INR");
         order.setAmount(9D);
         order.setDescription("This is a test transaction.");
         order.setRedirectUrl("http://www.someexample.com");
         order.setWebhookUrl("http://www.someurl.com/");
-        order.setTransactionId("dxg234");
+        order.setTransactionId("dxg432");
+        //order.setExpiresAt(new Date());
+        //order.setAllowRepeatedPayments(true);
+
+        System.out.println(order);
 
         try {
             PaymentOrderResponse paymentOrderResponse = api.createPaymentOrder(order);
-            System.out.println(paymentOrderResponse.getPaymentOrder().getStatus());
+            System.out.println(paymentOrderResponse.getPaymentOrder());
 
         } catch (HTTPException e) {
             System.out.println(e.getStatusCode());
@@ -49,7 +56,7 @@ public class InstamojoExample {
         /*
          * Get details of payment order when order id is given
          */
-        try {
+        /*try {
             PaymentOrder paymentOrder = api.getPaymentOrder("[PAYMENT_ORDER_ID]");
             System.out.println(paymentOrder.getId());
             System.out.println(paymentOrder.getStatus());
@@ -61,12 +68,12 @@ public class InstamojoExample {
 
         } catch (ConnectionException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         /*
          * Get details of payment order when transaction id is given
          */
-        try {
+        /*try {
             PaymentOrder paymentOrder = api.getPaymentOrderByTransactionId("[TRANSACTION_ID]");
             System.out.println(paymentOrder.getId());
             System.out.println(paymentOrder.getStatus());
@@ -78,12 +85,12 @@ public class InstamojoExample {
 
         } catch (ConnectionException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         /*
          * Get list of all payment orders
          */
-        try {
+        /*try {
             ApiListResponse<PaymentOrder> paymentOrders = api.getPaymentOrders(0, 10);
 
             // Loop over all of the payment orders and print status of each
@@ -100,13 +107,13 @@ public class InstamojoExample {
 
         } catch (ConnectionException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
 
         /*
          * Create a new refund
          */
-        Refund refund = new Refund();
+        /*Refund refund = new Refund();
         refund.setPaymentId("[PaymentId]");
         refund.setStatus("refunded");
         refund.setType("RFD");
@@ -126,6 +133,6 @@ public class InstamojoExample {
 
         } catch (ConnectionException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }
