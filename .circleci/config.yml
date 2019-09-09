@@ -55,9 +55,9 @@ jobs:
          path: build/libs
 
      - persist_to_workspace:
-         root: .
+         root: ./
          paths:
-            - .
+            - output
 
 
  release:
@@ -82,12 +82,12 @@ jobs:
      - image: cibuilds/github:0.10
    steps:
      - attach_workspace:
-         at: /imojo/output/jar
+         at: /imojo
      - run:
          name: "Publish Release on GitHub"
          command: |
            VERSION="v1.0"
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /imojo/output/jar
+           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /imojo/ouput
 
 workflows:
   version: 2
