@@ -55,8 +55,8 @@ jobs:
          path: build/libs
 
      - persist_to_workspace:
-         root: build
-         path: libs
+         root: build/libs
+         path: output
 
 
  release:
