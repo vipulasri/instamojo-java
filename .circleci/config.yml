@@ -50,8 +50,10 @@ jobs:
          name: Assemble JAR
          command: |
            gradle assemble
-      - store_artifacts:
-          path: build/libs
+
+     - store_artifacts:
+         path: build/libs
+
 
  release:
    <<: *defaults
