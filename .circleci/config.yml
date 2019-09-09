@@ -51,10 +51,13 @@ jobs:
          command: |
            gradle assemble
 
+     - store_artifacts:
+         path: build/libs
+
      - persist_to_workspace:
-         root: build/libs
+         root: .
          paths:
-            - output
+            - .
 
 
  release:
