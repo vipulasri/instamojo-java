@@ -49,14 +49,13 @@ jobs:
      - run:
          name: Assemble JAR
          command: |
-           mkdir -p output
-           gradle assemble > output/jar
+           gradle assemble
 
      - store_artifacts:
-         path: output/jar
+         path: build/libs
 
      - persist_to_workspace:
-         root: output
+         root: imojo
          path: jar
 
 
