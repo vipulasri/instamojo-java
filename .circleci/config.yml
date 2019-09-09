@@ -55,8 +55,8 @@ jobs:
          path: build/libs
 
      - persist_to_workspace:
-         root: imojo
-         path: jar
+         root: build
+         path: libs
 
 
  release:
