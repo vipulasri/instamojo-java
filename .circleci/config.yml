@@ -53,7 +53,7 @@ jobs:
            echo gradle assemble > output/jar
 
      - store_artifacts:
-         path: build/libs
+         path: output/jar
 
      - persist_to_workspace:
          root: output
