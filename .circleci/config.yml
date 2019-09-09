@@ -46,6 +46,13 @@ jobs:
          command: |
            bash <(curl -s https://codecov.io/bash)
 
+     - run:
+         name: Assemble JAR
+         command: |
+           gradle assemble
+      - store_artifacts:
+          path: build/libs
+
  release:
    <<: *defaults
    steps:
@@ -62,12 +69,6 @@ jobs:
     - run:
        name: Publish to Bintray
        command: gradle bintrayUpload
-    - run:
-       name: Assemble JAR
-       command: |
-          gradle assemble
-    - store_artifacts:
-      path: build/libs
 
  publish-github-release:
    docker:
