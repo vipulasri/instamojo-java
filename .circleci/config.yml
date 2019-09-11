@@ -90,13 +90,13 @@ jobs:
      - image: cibuilds/github:0.10
    steps:
      - attach_workspace:
-         at: ~/imojo/ouput
+         at: ~/imojo/output
      - run:
          name: "Publish Release on GitHub"
          command: |
            find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
            VERSION="v1.0"
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/ouput
+           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/output
 
 
 workflows:
