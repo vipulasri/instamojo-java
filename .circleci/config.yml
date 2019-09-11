@@ -10,7 +10,7 @@ version: 2
 jobs:
  build:
    <<: *defaults
-   shell: /bin/sh -leo pipefail
+   shell: !/bin/sh -leo pipefail
    environment:
      - BASH_ENV: /etc/profile
    steps:
