@@ -5,7 +5,6 @@ defaults: &defaults
   environment:
     JVM_OPTS: -Xmx3200m
     TERM: dumb
-    BASH_ENV: /etc/profile
 
 version: 2
 jobs:
