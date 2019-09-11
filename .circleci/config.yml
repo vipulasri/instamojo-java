@@ -50,6 +50,7 @@ jobs:
          name: Assemble JAR
          command: |
            mkdir -p output
+           cd ouput
            gradle assemble
 
      - store_artifacts:
