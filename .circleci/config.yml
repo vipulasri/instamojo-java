@@ -60,7 +60,7 @@ jobs:
          command: |
            mkdir -p output
            cp -r build/libs output
-           cd output
+           cd output/libs
            ls
 
      - persist_to_workspace:
