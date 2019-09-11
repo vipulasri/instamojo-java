@@ -50,7 +50,7 @@ jobs:
          name: Assemble JAR
          command: |
            gradle assemble
-           echo 'export PROJECT_VERSION=$(gradle properties -q | grep "version:" | awk '{print $2}' | tr -d '[:space:]')' >> $BASH_ENV
+           echo "export PROJECT_VERSION=$(gradle properties -q | grep "version:" | awk '{print $2}' | tr -d '[:space:]')" >> $BASH_ENV
            find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
 
      - store_artifacts:
