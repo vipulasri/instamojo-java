@@ -60,7 +60,7 @@ jobs:
          command: |
            mkdir -p output
            cd build/libs
-           cp -r * output
+           cp -r * ../output
            cd ../output
            ls
 
