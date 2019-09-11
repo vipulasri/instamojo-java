@@ -59,10 +59,11 @@ jobs:
          name: Copy artifacts to persisted workspace
          command: |
             mkdir -p output
-            cp -r build/libs ouput
+            cp -r build/libs output
+            find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
 
      - persist_to_workspace:
-         root: ouput
+         root: output
          paths:
             - .
 
