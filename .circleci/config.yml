@@ -52,7 +52,7 @@ jobs:
            mkdir -p output
            ls
            gradle assemble
-           ls
+           find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
 
      - store_artifacts:
          path: build/libs
