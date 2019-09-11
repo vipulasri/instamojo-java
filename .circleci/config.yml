@@ -92,7 +92,7 @@ jobs:
      - run:
          name: "Publish Release on GitHub"
          command: |
-           find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
+           ls
            VERSION="v1.0"
            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/output/libs
 
