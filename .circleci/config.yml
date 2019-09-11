@@ -49,13 +49,17 @@ jobs:
      - run:
          name: Assemble JAR
          command: |
-           mkdir -p output
-           ls
            gradle assemble
            find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
 
      - store_artifacts:
          path: build/libs
+
+     - run:
+         name: Copy artifacts to persisted workspace
+         command: |
+            mkdir -p output
+            cp build/libs output
 
      - persist_to_workspace:
          root: output
