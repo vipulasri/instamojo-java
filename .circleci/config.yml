@@ -50,14 +50,15 @@ jobs:
          name: Assemble JAR
          command: |
            mkdir -p output
-           cd output
+           ls
            gradle assemble
+           ls
 
      - store_artifacts:
          path: build/libs
 
      - persist_to_workspace:
-         root: ouput
+         root: output
          paths:
             - .
 
