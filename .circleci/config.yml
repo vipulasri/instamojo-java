@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: /imojo
+  working_directory: ~/imojo
   docker:
   - image: circleci/openjdk:8-jdk
   environment:
@@ -56,7 +56,7 @@ jobs:
          path: build/libs
 
      - persist_to_workspace:
-         root: output
+         root: ouput
          paths:
             - .
 
@@ -83,12 +83,12 @@ jobs:
      - image: cibuilds/github:0.10
    steps:
      - attach_workspace:
-         at: /imojo/ouput
+         at: ~/imojo/ouput
      - run:
          name: "Publish Release on GitHub"
          command: |
            VERSION="v1.0"
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /imojo/ouput
+           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/ouput
 
 workflows:
   version: 2
