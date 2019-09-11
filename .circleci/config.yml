@@ -58,15 +58,13 @@ jobs:
      - run:
          name: Copy artifacts to persisted workspace
          command: |
-            mkdir -p output
-            cp -r build/libs output
-            find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
+           mkdir -p output
+           cp -r build/libs output
 
      - persist_to_workspace:
          root: output
          paths:
-            - .
-
+           - .
 
  release:
    <<: *defaults
@@ -85,6 +83,8 @@ jobs:
        name: Publish to Bintray
        command: gradle bintrayUpload
 
+
+
  publish-github-release:
    docker:
      - image: cibuilds/github:0.10
@@ -94,6 +94,7 @@ jobs:
      - run:
          name: "Publish Release on GitHub"
          command: |
+           find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
            VERSION="v1.0"
            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/ouput
 
