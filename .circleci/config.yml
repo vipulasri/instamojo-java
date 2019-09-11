@@ -10,8 +10,6 @@ version: 2
 jobs:
  build:
    <<: *defaults
-   environment:
-     - BASH_ENV: /etc/profile
    steps:
      - checkout
 
