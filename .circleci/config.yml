@@ -97,6 +97,7 @@ jobs:
            VERSION="v1.0"
            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/ouput
 
+
 workflows:
   version: 2
   build-and-release:
