@@ -59,7 +59,12 @@ jobs:
          name: Copy artifacts to persisted workspace
          command: |
            mkdir -p output
+           cd build/libs
+           ls
+           cd ..
            cp -r build/libs output
+           cd output
+           ls
 
      - persist_to_workspace:
          root: output
