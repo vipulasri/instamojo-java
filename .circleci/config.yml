@@ -83,8 +83,6 @@ jobs:
        name: Publish to Bintray
        command: gradle bintrayUpload
 
-
-
  publish-github-release:
    docker:
      - image: cibuilds/github:0.10
