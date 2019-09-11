@@ -60,8 +60,6 @@ jobs:
          command: |
            mkdir -p output
            cp -r build/libs/* output
-           cd output
-           ls
 
      - persist_to_workspace:
          root: output
@@ -90,14 +88,14 @@ jobs:
      - image: cibuilds/github:0.10
    steps:
      - attach_workspace:
-         at: ~/imojo/output/libs
+         at: ~/imojo/output
      - run:
          name: "Publish Release on GitHub"
          command: |
-           cd ~/imojo/output/libs/libs
+           cd ~/imojo/output
            ls
            VERSION="v1.0"
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/output/libs
+           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/output
 
 
 workflows:
