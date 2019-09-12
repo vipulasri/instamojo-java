@@ -60,6 +60,9 @@ jobs:
          command: |
            mkdir -p output
            cp -r build/libs/* output
+           cp CHANGELOG.md output
+           cd output
+           ls
 
      - persist_to_workspace:
          root: output
@@ -96,7 +99,6 @@ jobs:
            ls
            PROJECT_VERSION="v1.0.1"
            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${PROJECT_VERSION} ~/imojo/output
-
 
 workflows:
   version: 2
