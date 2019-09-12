@@ -50,7 +50,6 @@ jobs:
          name: Assemble JAR
          command: |
            gradle assemble
-           echo "export PROJECT_VERSION=$(gradle properties -q | grep "version:" | awk '{print $2}' | tr -d '[:space:]')" >> $BASH_ENV
            find . -type d | sort | awk '$0 !~ last "/" {print last} {last=$0} END {print last}'
 
      - store_artifacts:
@@ -95,7 +94,7 @@ jobs:
          command: |
            cd ~/imojo/output
            ls
-           echo ${PROJECT_VERSION}
+           PROJECT_VERSION="v1.0.1"
            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${PROJECT_VERSION} ~/imojo/output
 
 
