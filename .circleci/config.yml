@@ -94,6 +94,8 @@ jobs:
          name: "Publish Release on GitHub"
          command: |
            cd ~/imojo/output
+           mkdir -p temp
+           cd temp
            input="CHANGELOG.md"
            consumeData=0
            while IFS= read -r line
