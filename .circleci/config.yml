@@ -115,18 +115,11 @@ jobs:
 
            done < "$input"
 
-           echo "GITHUB_TOKEN: ${GITHUB_TOKEN}"
-           echo "CIRCLE_PROJECT_USERNAME: ${CIRCLE_PROJECT_USERNAME}"
-           echo "CIRCLE_PROJECT_REPONAME: ${CIRCLE_PROJECT_REPONAME}"
-           echo "CIRCLE_SHA1: ${CIRCLE_SHA1}"
-           echo "VERSION: ${VERSION}"
-           echo "MESSAGE: ${MESSAGE}"
-
            ghr -t ${GITHUB_TOKEN} \
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
-            -t ${VERSION} \
+            -n ${VERSION} \
             -b ${MESSAGE} \
             -delete ${VERSION} \
             ~/imojo/output
