@@ -95,7 +95,6 @@ jobs:
          command: |
            cd ~/imojo/output
            mkdir -p temp
-           cd temp
            input="CHANGELOG.md"
            consumeData=0
            while IFS= read -r line
@@ -109,21 +108,20 @@ jobs:
                  VERSION=${line:3:${#line}}
                  echo "version: $VERSION"
                else
-                 echo "$line" >> notes.txt
+                 echo "$line" >> /temp/notes.txt
                  echo "$line"
                fi
              fi
 
            done < "$input"
 
-           echo $(cat ./notes.txt)
-           ls
+           echo $(cat ./temp/notes.txt)
 
            ghr -t ${GITHUB_TOKEN} \
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
-            -b "$(cat ./notes.txt)" \
+            -b "$(cat ./temp/notes.txt)" \
             -delete ${VERSION} \
             ~/imojo/output
 
