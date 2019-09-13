@@ -95,7 +95,6 @@ jobs:
          command: |
            cd ~/imojo/output
            input="CHANGELOG.md"
-
            consumeData=0
            MESSAGE=""
            while IFS= read -r line
