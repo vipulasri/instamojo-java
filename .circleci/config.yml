@@ -107,21 +107,18 @@ jobs:
                  VERSION=${line:3:${#line}}
                  echo "version: $VERSION"
                else
-                 echo "$line" > notes
+                 echo "$line" >> notes.txt
                  echo "$line"
                fi
              fi
 
            done < "$input"
 
-           ls
-           echo "$(cat ./notes)"
-
            ghr -t ${GITHUB_TOKEN} \
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
-            -b "$(cat ./notes)" \
+            -b "$(cat ./notes.txt)" \
             -delete ${VERSION} \
             ~/imojo/output
 
