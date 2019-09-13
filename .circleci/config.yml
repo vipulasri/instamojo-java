@@ -114,6 +114,9 @@ jobs:
 
            done < "$input"
 
+           ls
+           echo "$(cat ./notes)"
+
            ghr -t ${GITHUB_TOKEN} \
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
