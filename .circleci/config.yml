@@ -61,8 +61,6 @@ jobs:
            mkdir -p output
            cp -r build/libs/* output
            cp CHANGELOG.md output
-           cd output
-           ls
 
      - persist_to_workspace:
          root: output
@@ -96,9 +94,28 @@ jobs:
          name: "Publish Release on GitHub"
          command: |
            cd ~/imojo/output
-           ls
-           PROJECT_VERSION="v1.0.1"
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${PROJECT_VERSION} ~/imojo/output
+           input="CHANGELOG.md"
+
+           consumeData=0
+           MESSAGE=""
+           while IFS= read -r line
+           do
+             if [ "${line:0:2}" == "##" ]; then
+               ((consumeData+=1))
+             fi
+
+             if [ "$consumeData" == 1 ]; then
+               if [ "${line:0:2}" == "##" ]; then
+                 VERSION=${line:3:${#line}}
+                 echo "version: $VERSION"
+               else
+                 MESSAGE+=$line
+                 echo "lines: $line"
+               fi
+             fi
+
+           done < "$input"
+           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/imojo/output
 
 workflows:
   version: 2
