@@ -119,9 +119,9 @@ jobs:
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
-            -body ${MESSAGE} \
+            -b "hello" \
             -delete ${VERSION} \
-            v1.0.1 ~/imojo/output
+            ~/imojo/output
 
 workflows:
   version: 2
