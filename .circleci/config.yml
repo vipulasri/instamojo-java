@@ -115,13 +115,11 @@ jobs:
 
            done < "$input"
 
-           echo "$(cat ./CHANGELOG.md)"
-
            ghr -t ${GITHUB_TOKEN} \
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
-            -b $(cat ./CHANGELOG.md) \
+            -body ${MESSAGE} \
             -delete ${VERSION} \
             v1.0.1 ~/imojo/output
 
