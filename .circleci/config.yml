@@ -108,7 +108,7 @@ jobs:
                  VERSION=${line:3:${#line}}
                  echo "version: $VERSION"
                else
-                 echo "$line" >> /temp/notes.txt
+                 echo "$line" >> temp/notes.txt
                  echo "$line"
                fi
              fi
