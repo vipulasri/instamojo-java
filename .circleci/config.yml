@@ -96,7 +96,6 @@ jobs:
            cd ~/imojo/output
            input="CHANGELOG.md"
            consumeData=0
-           MESSAGE=""
            while IFS= read -r line
            do
              if [ "${line:0:2}" == "##" ]; then
@@ -108,8 +107,8 @@ jobs:
                  VERSION=${line:3:${#line}}
                  echo "version: $VERSION"
                else
-                 MESSAGE+="$line<br/>"
-                 echo "message: $MESSAGE"
+                 echo "$line" > notes
+                 echo "$line"
                fi
              fi
 
@@ -119,7 +118,7 @@ jobs:
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
-            -b "${MESSAGE}" \
+            -b "$(cat ./notes)" \
             -delete ${VERSION} \
             ~/imojo/output
 
