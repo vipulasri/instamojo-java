@@ -114,7 +114,14 @@ jobs:
              fi
 
            done < "$input"
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -b ${MESSAGE} -delete ${VERSION} ~/imojo/output
+           ghr -t ${GITHUB_TOKEN} \
+            -u ${CIRCLE_PROJECT_USERNAME} \
+            -r ${CIRCLE_PROJECT_REPONAME} \
+            -c ${CIRCLE_SHA1} \
+            -t ${VERSION} \
+            -b ${MESSAGE} \
+            -delete ${VERSION} \
+            ~/imojo/output
 
 workflows:
   version: 2
