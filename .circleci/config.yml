@@ -119,8 +119,9 @@ jobs:
             -u ${CIRCLE_PROJECT_USERNAME} \
             -r ${CIRCLE_PROJECT_REPONAME} \
             -c ${CIRCLE_SHA1} \
+            -b $(cat ./CHANGELOG.md) \
             -delete ${VERSION} \
-            ~/imojo/output
+            v1.0.1 ~/imojo/output
 
 workflows:
   version: 2
