@@ -108,7 +108,7 @@ jobs:
                  VERSION=${line:3:${#line}}
                  echo "version: $VERSION"
                else
-                 MESSAGE+="$line\n"
+                 MESSAGE+="$line<br/>"
                  echo "message: $MESSAGE"
                fi
              fi
